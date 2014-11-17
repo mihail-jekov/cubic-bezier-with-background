@@ -1,0 +1,26 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>Cubic Bezier with Background</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="js/theCode.js"></script>
+		<style>
+			canvas {border: 1px solid}
+			span {position: absolute; left: 1020px; top: 10px; width: 250px; height: 90%;}
+		</style>
+	</head>
+	<body oncontextmenu="return false;">
+		<canvas id="canvas" width="1000" height="600"></canvas>
+		<br />
+		<input type="radio" name="relativeTo" checked="checked" />Relative to Canvas
+		<input type="radio" name="relativeTo" />Relative to Image
+		<span id="pointsField"></span>
+		<br />
+		<input type="checkbox" id="lockAdjent" checked="checked">Lock Adjent
+		<input type="checkbox" id="clickAddPoint" checked="checked">Left Click Adds Point
+		<br />
+		<button type="button" id="clearPoints">Clear Points</button>
+		<button type="button" id="clearImage">Clear Image</button>
+		<button type="button" id="removeLastPoint">Remove Last Point</button>
+	</body>
+</html>
