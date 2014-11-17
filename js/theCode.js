@@ -105,6 +105,8 @@ $(function()
 	$("#clearImage").click(function()
 	{
 		image = null;
+		$(":radio[value=toCanvas]").prop('checked', true);
+		$("input[name=relativeTo]").attr('disabled', 'disabled');
 		drawCanvas();
 	});
 	
@@ -114,6 +116,11 @@ $(function()
 	});
 	
 	$("input[name=relativeTo]").attr('disabled', 'disabled');
+	
+	$("input[name=relativeTo]").click(function()
+	{
+		updatePoints();
+	});
 	
 	drawCanvas();
 });
@@ -163,7 +170,8 @@ function updatePoints()
 	var result = "Point's coordinates: \n";
 	$.each(bezierPoints, function(index, value)
 	{
-		result += "(" + value.x.toFixed(2) + ", " + value.y.toFixed(2) + ")";
+		if($(':radio[value=toImage]').is(':checked')) result += "(" + (value.x.toFixed(2) - imagePoint.x) + ", " + (value.y.toFixed(2) - imagePoint.y) + ")";
+		else result += "(" + value.x.toFixed(2) + ", " + value.y.toFixed(2) + ")";
 		if (index != bezierPoints.length - 1) result += ", ";
 	});
 	$("#pointsField").text(result);
@@ -186,6 +194,7 @@ function handleFileSelect(evt)
 		image.src = URL.createObjectURL(files[0]);
 		image.onload = function()
 		{
+			$("input[name=relativeTo]").removeAttr('disabled');
 			drawCanvas();
 		}
 	}
